@@ -9,9 +9,7 @@ import java.util.List;
 
 /**
  * 数据连接类
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
+
  */
 public class DBConnection {
 

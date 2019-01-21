@@ -12,9 +12,7 @@ import java.util.Random;
 
 /**
  * DTO Java File Helper
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
+
  */
 public final class PojoGenerator {
 	
@@ -58,6 +56,8 @@ public final class PojoGenerator {
 				for (int i = 1; i < fields.length; i++){
 					fieldName += StringUtils.transferUpper(fields[i]);
 				}
+
+				res.append("\t@Column(name=\"" + map.getKey() + "\")\n");
 				res.append("\tprivate " + fieldType + " " + fieldName + ";\n");
 			}
 			

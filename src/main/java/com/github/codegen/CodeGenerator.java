@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * 代码生成器主窗口(程序入口)
  *
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
+
  */
 public class CodeGenerator {
 

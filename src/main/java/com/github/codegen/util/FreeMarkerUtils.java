@@ -9,9 +9,7 @@ import java.io.IOException;
 /**
  * FreeMarker模版工具类
  *
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
+
  */
 public class FreeMarkerUtils {
     /** 定义模版配置信息对象 */

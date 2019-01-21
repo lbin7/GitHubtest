@@ -20,16 +20,13 @@ import java.util.Map;
 /**
  * 选择构建模型窗口
  *
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
  */
 public class ChooseFrame {
 
     // 定义窗口的宽度
     private static final int WIN_WIDTH = 430;
     // 定义窗口的高度
-    private static final int WIN_HEIGHT = 420;
+    private static final int WIN_HEIGHT = 510;
     // 定义选择构建模版下拉框
     private JComboBox templateComboBox;
     // 定义面板

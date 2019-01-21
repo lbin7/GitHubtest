@@ -10,9 +10,7 @@ import java.util.Calendar;
 
 /**
  * 业务层接口与实现类生成
- * @author LB
- * @date 2019-1-20 下午5:31:17
- * @version 1.0
+
  */
 public class ServiceGenerator {
 	
