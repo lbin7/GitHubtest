@@ -63,7 +63,7 @@ public final class PojoGenerator {
 					fieldName += StringUtils.transferUpper(fields[i]);
 				}
 
-				res.append("\t@Column(name=\"" + map.getKey() + "\")\n");
+
 				res.append("\tprivate " + fieldType + " " + fieldName + ";\n");
 			}
 			
@@ -157,6 +157,7 @@ public final class PojoGenerator {
 				for (int i = 1; i < fields.length; i++){
 					fieldName += StringUtils.transferUpper(fields[i]);
 				}
+				res.append("\t@Column(name=\"" + map.getKey() + "\")\n");
 				res.append("\tprivate " + fieldType + " " + fieldName + ";\n");
 			}
 

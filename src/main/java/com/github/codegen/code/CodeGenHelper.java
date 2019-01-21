@@ -74,7 +74,7 @@ public class CodeGenHelper {
 			}else if (codeType == 5){
 				// 生成前端AngularJS
 				AngularGenerator.generatorMVC(path, className);
-			}else if (codeType == 5){
+			}else if (codeType == 6){
 				// 得到一张表信息后，生成对应的实体类【Spring注解绑定】
 				PojoGenerator.generatorPojoSpring(path + "/src/main/java/", className,tableName, packageName, columns,authorName,emailName);
 			}

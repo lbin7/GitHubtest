@@ -511,7 +511,7 @@ public class ChooseFrame {
                                 osw.flush();
                                 osw.close();
 
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 1,newAuthorName,newEmailName);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 6,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成实体类成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
