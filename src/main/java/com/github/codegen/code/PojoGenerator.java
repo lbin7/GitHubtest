@@ -49,7 +49,7 @@ public final class PojoGenerator {
 
 			/** 拼接生成类的字符串 */
 			res.append("public class " + className + " implements java.io.Serializable{\n\n");
-			res.append("\tprivate static final long serialVersionUID = 1L;\n");
+			res.append("\tprivate static final long serialVersionUID = "+random.nextLong()+"L;\n");
 			/** 生成DTO类中相关属性 */
 			for (Map.Entry<String, Integer> map : columns.entrySet()){
 				/** 处理数据类型(数据库的数据类型转化成Java相关类型) */
