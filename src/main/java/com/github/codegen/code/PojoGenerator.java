@@ -27,7 +27,7 @@ public final class PojoGenerator {
 	 * @param columns 列的集合
 	 */
 	public static void generatorPojo(String path, String className,
-					String packageName, Map<String, Integer> columns) {
+					String packageName, Map<String, Integer> columns,String authorName,String emailName) {
 		try{
 			
 			/** 定义StringBuider来拼接生成类的字符串 */
@@ -37,6 +37,12 @@ public final class PojoGenerator {
 			/** 拼接生成注释字符串 */
 			res.append("/**\n");
 			res.append(" * " + className + " 实体类\n");
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @author " + authorName + "\n");
+			}
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @email" + emailName + "\n");
+			}
 			res.append(" * @date " + sdf.format(Calendar.getInstance().getTime()) + "\n");
 			res.append(" * @version 1.0\n");
 			res.append(" */\n");
@@ -111,7 +117,7 @@ public final class PojoGenerator {
 	 * @param columns 列的集合
 	 */
 	public static void generatorPojoSpring(String path, String className,String tableName,
-					String packageName, Map<String, Integer> columns) {
+					String packageName, Map<String, Integer> columns,String authorName,String emailName) {
 		try{
 
 			/** 定义StringBuider来拼接生成类的字符串 */
@@ -121,6 +127,12 @@ public final class PojoGenerator {
 			/** 拼接生成注释字符串 */
 			res.append("/**\n");
 			res.append(" * " + className + " 实体类\n");
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @author " + authorName + "\n");
+			}
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @email" + emailName + "\n");
+			}
 			res.append(" * @date " + sdf.format(Calendar.getInstance().getTime()) + "\n");
 			res.append(" * @version 1.0\n");
 			res.append(" */\n");

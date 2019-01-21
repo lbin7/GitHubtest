@@ -24,7 +24,7 @@ public class ControllerGenerator {
      * @param className
      * @param controllerPackage
      */
-    public static void generatorController(String path, String className, String controllerPackage){
+    public static void generatorController(String path, String className, String controllerPackage,String authorName,String emailName){
         try{
             // 得到基础包名
             String basePackage = controllerPackage.substring(0, controllerPackage.lastIndexOf("."));
@@ -44,6 +44,12 @@ public class ControllerGenerator {
             /** 拼接生成注释字符串 */
             res.append("/**\n");
             res.append(" * " + className + "Controller 控制器类\n");
+            if (authorName!=null&&!authorName.equals("")){
+                res.append(" * @author " + authorName + "\n");
+            }
+            if (emailName!=null&&!emailName.equals("")){
+                res.append(" * @email" + emailName + "\n");
+            }
             res.append(" * @date " + sdf.format(Calendar.getInstance().getTime()) + "\n");
             res.append(" * @version 1.0\n");
             res.append(" */\n");

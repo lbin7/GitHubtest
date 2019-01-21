@@ -22,7 +22,7 @@ public class ServiceGenerator {
 	 * @param className
 	 * @param servicePackage
 	 */
-	public static void generatorService(String path, String className, String servicePackage){
+	public static void generatorService(String path, String className, String servicePackage,String authorName,String emailName){
 		try{
 			// 得到基础包名
 			String basePackage = servicePackage.substring(0, servicePackage.lastIndexOf("."));
@@ -39,6 +39,12 @@ public class ServiceGenerator {
 			/** 拼接生成注释字符串 */
 			res.append("/**\n");
 			res.append(" * " + className + "Service 服务接口\n");
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @author " + authorName + "\n");
+			}
+			if (emailName!=null&&!emailName.equals("")){
+				res.append(" * @email" + emailName + "\n");
+			}
 			res.append(" * @date " + sdf.format(Calendar.getInstance().getTime()) + "\n");
 			res.append(" * @version 1.0\n");
 			res.append(" */\n");

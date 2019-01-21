@@ -37,6 +37,10 @@ public class ChooseFrame {
     private CodeGenHelper codeGenHelper;
     // 定义所有的模块
     private java.util.List<String> modules = new ArrayList<>();
+    //定义@author名称
+    private String authorName="";
+    //定义@email地址
+    private String emailName="";
 
     /** 显示选择窗口 */
     public void showChooseWindow(String dbType, final String dbName,
@@ -130,6 +134,24 @@ public class ChooseFrame {
 
         /** ########## 第六行 ########### */
         // 创建JLabel
+        final JLabel authorLabel = new JLabel("@author名：");
+        authorLabel.setPreferredSize(new Dimension(95,30));
+        // 创建TextField
+        final JTextField authorTextField = new JTextField(authorName);
+        // 设置高和宽
+        authorTextField.setPreferredSize(new Dimension(280,30));
+
+        /** ########## 第七行 ########### */
+        // 创建JLabel
+        final JLabel emailLabel = new JLabel("@email地址：");
+        emailLabel.setPreferredSize(new Dimension(95,30));
+        // 创建TextField
+        final JTextField emailTextField = new JTextField(emailName);
+        // 设置高和宽
+        emailTextField.setPreferredSize(new Dimension(280,30));
+
+        /** ########## 第八行 ########### */
+        // 创建JLabel
         final JLabel moduleLabel = new JLabel("模块名称：");
         moduleLabel.setPreferredSize(new Dimension(95,30));
         // 创建TextField
@@ -137,7 +159,7 @@ public class ChooseFrame {
         // 设置高和宽
         moduleTextField.setPreferredSize(new Dimension(280,30));
 
-        /** ########## 第七行 ########### */
+        /** ########## 第九行 ########### */
         // 创建JLabel
         final JLabel packageLabel = new JLabel("包名：");
         packageLabel.setPreferredSize(new Dimension(95,30));
@@ -146,7 +168,7 @@ public class ChooseFrame {
         // 设置高和宽
         packageTextField.setPreferredSize(new Dimension(280,30));
 
-        /** ########## 第八行 ########### */
+        /** ########## 第十行 ########### */
         // 创建JLabel
         final JLabel dirLabel = new JLabel("存储路径：");
         dirLabel.setPreferredSize(new Dimension(95,30));
@@ -170,7 +192,7 @@ public class ChooseFrame {
         });
 
 
-        /** ########## 第九行 ########### */
+        /** ########## 第十一行 ########### */
         // 创建JButton
         final JButton okButton = new JButton("确定");
         // 设置高和宽
@@ -264,6 +286,10 @@ public class ChooseFrame {
                 String tablePrefix = tableTextField.getText();
                 // 设置去除的表名前缀
                 codeGenHelper.setTablePrefix(tablePrefix);
+                // 获取新的项目名称
+                String newAuthorName = authorTextField.getText();
+                // 获取新的项目名称
+                String newEmailName = emailTextField.getText();
 
                 // 获取用户选择的存储路径
                 String chooseDir = chooseTextField.getText();
@@ -341,8 +367,8 @@ public class ChooseFrame {
                             osw.close();
 
                             /**######## 生成Dubbo服务提供者工程 ########*/
-                            // moduleDir.getPath(): F:\code\pinyougou\pinyougou-sellergoods
-                            // F:\code\pinyougou\pinyougou-sellergoods\pinyougou-sellergoods-interface
+                            // moduleDir.getPath(): ..\code\newProjectName\newModuleName
+                            // ..\code\newProjectName\newModuleName\newModuleName-interface
                             /**### 生成服务接口模块 ###*/
                             // 创建模块名称
                             File serviceInterfaceDir = new File(moduleDir.getPath() + "/" + newModuleName+ "-interface");
@@ -373,7 +399,7 @@ public class ChooseFrame {
                             osw.close();
 
 
-                            // F:\code\pinyougou\pinyougou-sellergoods\pinyougou-sellergoods-service
+                            // ..\code\newProjectName\newModuleName\newModuleName-service
                             /**### 生成服务实现模块 ###*/
                             // 创建模块名称
                             File serviceImplDir = new File(moduleDir.getPath() + "/" + newModuleName+ "-service");
@@ -465,7 +491,7 @@ public class ChooseFrame {
                                 osw.flush();
                                 osw.close();
 
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 1);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 1,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成实休类成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
@@ -485,7 +511,7 @@ public class ChooseFrame {
                                 osw.flush();
                                 osw.close();
 
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 1);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 1,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成实体类成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
@@ -556,7 +582,7 @@ public class ChooseFrame {
                                 osw.close();
 
                                 // 创建数据访问层
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 2);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 2,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成数据访问层成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
@@ -578,7 +604,7 @@ public class ChooseFrame {
                                 osw.close();
 
                                 // 创建业务层
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 3);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 3,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成业务层成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
@@ -642,7 +668,7 @@ public class ChooseFrame {
                                 osw.close();
 
                                 // 创建控制器层
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 4);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newPackageName, 4,newAuthorName,newEmailName);
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成控制器层成功！",
                                         "提示信息", JOptionPane.INFORMATION_MESSAGE);
@@ -840,7 +866,7 @@ public class ChooseFrame {
                                 osw.close();
 
                                 // 生成前端MVC
-                                codeGenHelper.generatorCode(moduleDir.getPath(), newProjectName, 5);
+                                codeGenHelper.generatorCode(moduleDir.getPath(), newProjectName, 5,newAuthorName,newEmailName);
 
                                 // 弹出提示窗口
                                 JOptionPane.showMessageDialog(null, "AI：生成前端MVC成功！",
@@ -970,6 +996,10 @@ public class ChooseFrame {
 
         jPanel.add(projectLabel);
         jPanel.add(projectTextField);
+        jPanel.add(authorLabel);
+        jPanel.add(authorTextField);
+        jPanel.add(emailLabel);
+        jPanel.add(emailTextField);
         jPanel.add(moduleLabel);
         jPanel.add(moduleTextField);
         jPanel.add(packageLabel);

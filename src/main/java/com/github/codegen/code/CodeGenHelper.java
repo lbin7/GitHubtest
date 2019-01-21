@@ -29,7 +29,7 @@ public class CodeGenHelper {
 		this.dbName = dbName;
 	}
 	/** 生成代码 */
-	public void generatorCode(String path, String packageName, int codeType) throws Exception{
+	public void generatorCode(String path, String packageName, int codeType,String authorName,String emailName) throws Exception{
 		Connection conn = dbConnection.getConnection("information_schema");
 		PreparedStatement pstmt = conn.prepareStatement(QUERY_SQL);
 		pstmt.setString(1, dbName);
@@ -61,22 +61,22 @@ public class CodeGenHelper {
 
 			if (codeType == 1){
 				// 得到一张表信息后，生成对应的实体
-				PojoGenerator.generatorPojo(path + "/src/main/java/", className, packageName, columns);
+				PojoGenerator.generatorPojo(path + "/src/main/java/", className, packageName, columns,authorName,emailName);
 			}else if(codeType == 2){
 				// 写出该表对应的MAPPER接口与映射文件
-				MapperGenerator.generatorMapper(path, className, packageName);
+				MapperGenerator.generatorMapper(path, className, packageName,authorName,emailName);
 			}else if(codeType == 3){
 				// 生成业务层接口与实现类
-				ServiceGenerator.generatorService(path + "/src/main/java/", className, packageName);
+				ServiceGenerator.generatorService(path + "/src/main/java/", className, packageName,authorName,emailName);
 			}else if (codeType == 4){
 				// 生成控制器类
-				ControllerGenerator.generatorController(path + "/src/main/java/", className, packageName);
+				ControllerGenerator.generatorController(path + "/src/main/java/", className, packageName,authorName,emailName);
 			}else if (codeType == 5){
 				// 生成前端AngularJS
 				AngularGenerator.generatorMVC(path, className);
 			}else if (codeType == 5){
 				// 得到一张表信息后，生成对应的实体类【Spring注解绑定】
-				PojoGenerator.generatorPojoSpring(path + "/src/main/java/", className,tableName, packageName, columns);
+				PojoGenerator.generatorPojoSpring(path + "/src/main/java/", className,tableName, packageName, columns,authorName,emailName);
 			}
 		}
 	}

@@ -20,7 +20,7 @@ public class MapperGenerator {
 	 * @param className
 	 * @param mapperPackage
 	 */
-	public static void generatorMapper(String path, String className, String mapperPackage){
+	public static void generatorMapper(String path, String className, String mapperPackage,String authorName,String emailName){
 		try{
 
 			String basePackage = mapperPackage.substring(0, mapperPackage.lastIndexOf("."));
@@ -34,6 +34,12 @@ public class MapperGenerator {
 			/** 拼接生成注释字符串 */
 			res.append("/**\n");
 			res.append(" * " + className + "Mapper 数据访问接口\n");
+			if (authorName!=null&&!authorName.equals("")){
+				res.append(" * @author " + authorName + "\n");
+			}
+			if (emailName!=null&&!emailName.equals("")){
+				res.append(" * @email" + emailName + "\n");
+			}
 			res.append(" * @date " + sdf.format(Calendar.getInstance().getTime()) + "\n");
 			res.append(" * @version 1.0\n");
 			res.append(" */\n");
