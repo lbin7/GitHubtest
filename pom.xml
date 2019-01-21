@@ -26,76 +26,52 @@
             <version>2.3.26-incubating</version>
         </dependency>
     </dependencies>
+    <!--<build>
 
-
-
-    <build>
         <plugins>
-            <plugin>
+            &lt;!&ndash;<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <target>1.7</target>
+                    <source>1.7</source>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <executable>true</executable>
-                </configuration>
-            </plugin>
+            </plugin>&ndash;&gt;
+
+        </plugins>
+    </build>-->
+    <build>
+        <plugins>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <!-- 指定Main方法入口的class -->
-                            <mainClass>com.github.codegen.CodeGenerator</mainClass>
-                            <!-- 在jar包的MANIFEST.MF文件中生成Class-Path属性 -->
-                            <addClasspath>true</addClasspath>
-                            <!-- Class-Path 前缀 -->
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                        <!-- 把本地的第三方jar包添加到MANIFEST.MF文件中,可以解压打包后的jar包查看MANIFEST.MF文件 -->
-                        <!--
-                        Class-Path: 指定当前jar包执行所依赖的classpath,包括本地的第三方jar包和maven引入的jar包
-                        Class-Path: lib/slf4j-api-1.7.13.jar lib/junit-3.8.1.jar
-                        Main-Class: 指定当前jar包的入口class
-                        Main-Class: com.birdben.App
-                        -->
-
-                    </archive>
-                </configuration>
-            </plugin>
-            <!-- 拷贝依赖的jar包到lib目录 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
                 <executions>
                     <execution>
-                        <id>copy</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <!-- ${project.build.directory} 构建目录，缺省为target -->
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.handlers</resource>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.schemas</resource>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-
         </plugins>
     </build>
+
 
 
 </project>
