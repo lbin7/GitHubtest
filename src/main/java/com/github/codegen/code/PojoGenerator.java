@@ -140,7 +140,7 @@ public final class PojoGenerator {
 			 * @Table(name="数据库表")
 			 * 拼接@Table，对应数据库表
 			 */
-			res.append(" @Table(name=\""+tableName+"\")\n");
+			res.append("@Table(name=\""+tableName+"\")\n");
 
 			/** 拼接生成类的字符串 */
 			res.append("public class " + className + " implements java.io.Serializable{\n\n");
